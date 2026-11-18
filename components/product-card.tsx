@@ -17,7 +17,7 @@ export function ProductCard({
       className="group flex flex-col"
       aria-label={`${product.name} by ${product.storeName ?? product.sellerName}`}
     >
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem] bg-sand/40">
+      <div className="relative h-96 overflow-hidden rounded-[1.25rem] bg-sand/40">
         <Image
           src={product.image}
           alt={product.name}

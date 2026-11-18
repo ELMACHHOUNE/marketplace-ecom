@@ -7,15 +7,15 @@ import {
   PackageCheck,
 } from "lucide-react";
 import { PrismaHero } from "@/components/ui/prisma-hero";
-import { AboutSection } from "@/components/about-section";
 import ClothingRailHero from "@/components/ui/product-rail-gallery";
+import { AboutSection } from "@/components/about-section";
 import {
   getFeaturedProducts,
   listCategoriesWithCounts,
   listProducts,
 } from "@/lib/products";
-import { toRailGarments } from "@/lib/rail";
 import { CATEGORIES } from "@/lib/constants";
+import { toRailGarments } from "@/lib/rail";
 
 const promises = [
   {
@@ -94,7 +94,7 @@ export default async function Home() {
           caption="Curated this week"
           ctaLabel="Shop all pieces"
           ctaHref="/products"
-          hanger="none"
+          hanger="wood"
           autoplay={editProducts.length > 3}
           interval={4200}
           className="border-y border-line"

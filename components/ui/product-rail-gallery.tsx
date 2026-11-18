@@ -7,10 +7,21 @@ import Link from "next/link";
 
 const END_PADDING = 12;
 
+export type GarmentKind =
+  | "tee"
+  | "knit"
+  | "hoodie"
+  | "shirt"
+  | "jacket"
+  | "coat";
+
 export type RailGarment = {
   id: string;
   name: string;
   description: string;
+  kind?: GarmentKind;
+  color?: string;
+  trim?: string;
   image?: string;
   backImage?: string;
   sideImage?: string;
@@ -20,20 +31,30 @@ export type RailGarment = {
   href?: string;
 };
 
-type Hanger = "brass" | "steel" | "wood" | "none";
+type Hanger = "brass" | "steel" | "wood" | "matte" | "none";
 
-type ClothingRailHeroProps = React.ComponentProps<"section"> & {
+export type ClothingRailHeroLabels = {
+  front: string;
+  back: string;
+  close: string;
+  show: string;
+};
+
+export type ClothingRailHeroProps = React.ComponentProps<"section"> & {
   items?: RailGarment[];
   eyebrow?: string;
+  heading?: string;
   title?: string;
   description?: string;
   caption?: string;
+  action?: React.ReactNode;
   ctaLabel?: string;
   ctaHref?: string;
   autoplay?: boolean;
   interval?: number;
   hanger?: Hanger;
-  className?: string;
+  labels?: ClothingRailHeroLabels;
+  onOpenChange?: (index: number | null) => void;
 };
 
 const defaultItems: RailGarment[] = [
@@ -206,9 +227,9 @@ function Photo({
 }) {
   const src =
     side === "back"
-      ? item.backImage ?? item.image
+      ? (item.backImage ?? item.image)
       : side === "side"
-        ? item.sideImage ?? item.image
+        ? (item.sideImage ?? item.image)
         : item.image;
   if (!src) {
     return (
@@ -233,8 +254,9 @@ function Photo({
     );
   }
 
-  const top = hanger === "none" ? 0 : hanger ? 24 : 0;
-  const height = hanger === "none" ? "100%" : hanger ? "calc(100% - 24px)" : "100%";
+  const top = hanger === "none" ? 0 : hanger ? 96 : 0;
+  const height =
+    hanger === "none" ? "100%" : hanger ? "calc(100% - 96px)" : "100%";
 
   return (
     <img
@@ -257,7 +279,7 @@ function HangerIcon({ type }: { type: Hanger }) {
   return (
     <svg
       viewBox="0 0 140 44"
-      className="absolute -top-5 left-1/2 h-11 w-[70%] -translate-x-1/2"
+      className="absolute left-1/2 top-[64px] h-11 w-[70%] -translate-x-1/2"
       fill="none"
       aria-hidden="true"
     >
@@ -321,7 +343,11 @@ function Rail({
   autoplay: boolean;
   interval: number;
 }) {
-  const [size, setSize] = React.useState({ width: 0, height: 0, carousel: false });
+  const [size, setSize] = React.useState({
+    width: 0,
+    height: 0,
+    carousel: false,
+  });
   const stage = React.useRef<HTMLDivElement | null>(null);
   const [live, setLive] = React.useState({
     index: 0,
@@ -416,7 +442,11 @@ function Rail({
   };
   const handleScroll = () => {
     if (size.carousel || !stage.current || step <= 0) return;
-    const index = clamp(Math.round(stage.current.scrollLeft / step), 0, count - 1);
+    const index = clamp(
+      Math.round(stage.current.scrollLeft / step),
+      0,
+      count - 1,
+    );
     setLive({ index, count });
   };
 
@@ -441,7 +471,9 @@ function Rail({
 
       <div
         className="relative z-10 flex h-full w-full items-end transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-        style={{ transform: size.carousel ? `translateX(${-offset}px)` : undefined }}
+        style={{
+          transform: size.carousel ? `translateX(${-offset}px)` : undefined,
+        }}
       >
         <div
           className="relative flex shrink-0 items-end justify-center pb-20"
@@ -449,20 +481,23 @@ function Rail({
         >
           <div
             aria-hidden="true"
-            className="absolute left-0 right-0 top-[52%] z-0 h-px bg-border"
+            className="absolute left-0 right-0 top-[84px] z-0 h-3 rounded-full border-y border-[#8a8e86]/40 bg-[linear-gradient(180deg,#f8f8f4_0%,#9da29a_18%,#60645d_52%,#cfd1c9_72%,#6f736b_100%)] shadow-[0_7px_14px_rgba(34,38,26,0.18)]"
           />
           <div
             aria-hidden="true"
-            className="absolute left-0 right-0 top-[52%] z-0 h-2 -translate-y-1/2 bg-[linear-gradient(180deg,rgba(255,255,255,0.42),transparent)]"
+            className="absolute left-0 right-0 top-[96px] z-0 h-24 bg-[linear-gradient(90deg,transparent,rgba(34,38,26,0.08),transparent)] blur-md"
           />
 
           {items.map((item, index) => {
-            const isCenter = size.carousel ? index === activeIndex : index === centerIndex;
-            const relative = size.carousel ? index - activeIndex : index - centerIndex;
-            const isVisible =
-              size.carousel
-                ? Math.abs(relative) <= 1
-                : Math.abs(relative) <= Math.floor(count / 2);
+            const isCenter = size.carousel
+              ? index === activeIndex
+              : index === centerIndex;
+            const relative = size.carousel
+              ? index - activeIndex
+              : index - centerIndex;
+            const isVisible = size.carousel
+              ? Math.abs(relative) <= 1
+              : Math.abs(relative) <= Math.floor(count / 2);
             const front = index === frontIndex;
             const width = contentWidth;
             const left = END_PADDING + index * step;
@@ -497,15 +532,25 @@ function Rail({
                     }}
                     className={isCenter ? "z-30" : "z-20"}
                   >
-                    <div className="relative mx-auto h-full w-full max-w-[280px] overflow-hidden rounded-[1.15rem] bg-paper shadow-[0_22px_46px_-34px_rgba(34,38,26,0.55)]">
+                    <div className="relative mx-auto h-full w-full max-w-[280px] overflow-hidden bg-transparent">
                       <Photo
                         item={item}
                         side="front"
                         hanger={hanger}
                         dimmed={false}
-                        fit="cover"
+                        fit="contain"
+                        className="z-10 transition-[opacity,transform] duration-500 group-hover:scale-[1.02] group-hover:opacity-0"
                       />
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-[linear-gradient(180deg,transparent,rgba(20,24,14,0.82))] px-3 pb-3 pt-14 text-cream">
+                      <Photo
+                        item={item}
+                        side="back"
+                        hanger={hanger}
+                        dimmed={false}
+                        fit="contain"
+                        className={`z-10 opacity-0 transition-[opacity,transform] duration-500 group-hover:scale-[1.02] group-hover:opacity-100 ${item.backImage ? "" : "scale-x-[-1]"}`}
+                      />
+                      <HangerIcon type={hanger} />
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 bg-[linear-gradient(180deg,transparent,rgba(20,24,14,0.88))] px-3 pb-3 pt-16 text-cream transition-opacity duration-300 group-hover:opacity-100">
                         <p className="truncate text-[0.72rem] font-semibold leading-tight">
                           {item.name}
                         </p>
@@ -513,7 +558,6 @@ function Rail({
                           {item.tag}
                         </p>
                       </div>
-                      <HangerIcon type={hanger} />
                     </div>
                   </Turn>
                 </div>
@@ -525,11 +569,14 @@ function Rail({
 
       <div className="absolute bottom-4 left-1/2 z-30 flex w-full max-w-[1400px] -translate-x-1/2 items-center justify-between px-4 sm:px-8">
         <div className="flex items-center gap-2">
-          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            {String((size.carousel ? activeIndex : frontIndex) + 1).padStart(2, "0")}
+          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white/70">
+            {String((size.carousel ? activeIndex : frontIndex) + 1).padStart(
+              2,
+              "0",
+            )}
           </span>
           <span className="h-px w-8 bg-border" />
-          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
+          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white/45">
             {String(count).padStart(2, "0")}
           </span>
         </div>
@@ -549,7 +596,11 @@ function Rail({
                 stroke="currentColor"
                 strokeWidth="1.5"
               >
-                <path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M10 3 5 8l5 5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
             <button
@@ -565,7 +616,11 @@ function Rail({
                 stroke="currentColor"
                 strokeWidth="1.5"
               >
-                <path d="m6 3 5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="m6 3 5 5-5 5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           </div>
@@ -600,14 +655,23 @@ function Rail({
   );
 }
 
+const DEFAULT_LABELS: ClothingRailHeroLabels = {
+  front: "Front",
+  back: "Back",
+  close: "Close",
+  show: "Show",
+};
+
 function Detail({
   open,
   items,
   setOpen,
+  labels = DEFAULT_LABELS,
 }: {
   open: number | null;
   items: RailGarment[];
   setOpen: (value: number | null) => void;
+  labels?: ClothingRailHeroLabels;
 }) {
   const [side, setSide] = React.useState<"front" | "back" | "side">("front");
   const titleId = React.useId();
@@ -669,7 +733,11 @@ function Detail({
                         : "border-border bg-background/80 text-muted-foreground hover:border-foreground/40"
                     }`}
                   >
-                    {value}
+                    {value === "side"
+                      ? labels.show
+                      : value === "front"
+                        ? labels.front
+                        : labels.back}
                   </button>
                 );
               })}
@@ -704,11 +772,11 @@ function Detail({
             </p>
             <h2
               id={titleId}
-              className="mt-3 font-display text-3xl leading-[1.08] tracking-[-0.02em] text-foreground sm:text-4xl"
+              className="mt-3 font-display text-3xl leading-[1.08] tracking-[-0.02em] text-white sm:text-4xl"
             >
               {item.name}
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-sm leading-relaxed text-white/65 sm:text-base">
               {item.description}
             </p>
 
@@ -739,9 +807,14 @@ function Detail({
             {item.details?.length ? (
               <dl className="mt-8 space-y-2 border-t border-border pt-5 text-xs">
                 {item.details.map((detail) => (
-                  <div key={detail} className="flex items-center justify-between gap-4">
+                  <div
+                    key={detail}
+                    className="flex items-center justify-between gap-4"
+                  >
                     <dt className="text-muted-foreground">Detail</dt>
-                    <dd className="text-right font-medium text-foreground">{detail}</dd>
+                    <dd className="text-right font-medium text-foreground">
+                      {detail}
+                    </dd>
                   </div>
                 ))}
               </dl>
@@ -752,7 +825,6 @@ function Detail({
             {open + 1} / {items.length}
           </div>
         </div>
-
       </div>
     </div>
   );
@@ -761,14 +833,18 @@ function Detail({
 export default function ClothingRailHero({
   items = defaultItems,
   eyebrow = "The rail",
-  title = "Quiet structure.",
+  heading,
+  title = heading ?? "Quiet structure.",
   description = "A rail of few things, chosen slowly. Softly tailored layers in linen, wool and washed cotton — made to be reached for daily and kept for years.",
   caption = "Autumn / Winter 25",
+  action,
   ctaLabel = "Shop the collection",
   ctaHref = "#",
   autoplay = false,
   interval = 3200,
   hanger = "brass",
+  labels,
+  onOpenChange,
   className,
   ...props
 }: ClothingRailHeroProps) {
@@ -779,44 +855,57 @@ export default function ClothingRailHero({
   const [heroRef, heroInView] = useInView<HTMLDivElement>(0.1);
 
   const safeIndex = Math.min(activeIndex, Math.max(0, items.length - 1));
+  const setOpenIndex = React.useCallback(
+    (index: number | null) => {
+      setOpen(index);
+      onOpenChange?.(index);
+    },
+    [onOpenChange],
+  );
 
   return (
     <section
       ref={ref}
-      className={`relative w-full overflow-hidden bg-background ${className ?? ""}`}
+      className={`relative w-full overflow-hidden bg-[#090d21] text-white ${className ?? ""}`}
       {...props}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.55),transparent_58%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.08),transparent_58%),linear-gradient(180deg,transparent_65%,rgba(0,0,0,0.2))]" />
 
       <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-8 px-4 pb-6 pt-16 sm:px-8 sm:pt-20 lg:pt-24">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-white/60">
               {eyebrow}
             </p>
-            <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[1.04] tracking-[-0.025em] text-foreground sm:text-5xl lg:text-6xl">
+            <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[1.04] tracking-[-0.025em] text-white sm:text-5xl lg:text-6xl">
               {title}
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/65 sm:text-base">
               {description}
             </p>
           </div>
 
-          <Link
-            href={ctaHref}
-            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-foreground transition-colors hover:border-foreground/40"
-          >
-            {ctaLabel}
-            <svg
-              viewBox="0 0 16 16"
-              className="size-3.5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
+          {action ?? (
+            <Link
+              href={ctaHref}
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/20 bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#090d21] transition-colors hover:bg-white/90"
             >
-              <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
+              {ctaLabel}
+              <svg
+                viewBox="0 0 16 16"
+                className="size-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          )}
         </div>
 
         <div ref={heroRef} className="relative">
@@ -826,12 +915,12 @@ export default function ClothingRailHero({
             activeIndex={safeIndex}
             onActive={setActiveIndex}
             open={open}
-            setOpen={setOpen}
+            setOpen={setOpenIndex}
             autoplay={autoplay && heroInView && !reduced}
             interval={Math.max(900, interval)}
           />
 
-          <div className="mt-4 flex items-center justify-between gap-4 text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground">
+          <div className="mt-4 flex items-center justify-between gap-4 text-[0.6rem] uppercase tracking-[0.18em] text-white/55">
             <span>{caption}</span>
             <span className="hidden sm:inline">
               Drag or tap a piece to look closer
@@ -840,7 +929,13 @@ export default function ClothingRailHero({
         </div>
       </div>
 
-      <Detail key={open ?? "closed"} open={open} items={items} setOpen={setOpen} />
+      <Detail
+        key={open ?? "closed"}
+        open={open}
+        items={items}
+        setOpen={setOpenIndex}
+        labels={labels}
+      />
     </section>
   );
 }

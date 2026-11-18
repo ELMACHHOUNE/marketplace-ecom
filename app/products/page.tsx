@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { PageIntro } from "@/components/page-intro";
-import ClothingRailHero from "@/components/ui/product-rail-gallery";
+import { ProductCard } from "@/components/product-card";
 import { CATEGORIES } from "@/lib/constants";
 import { listCategoriesWithCounts, listProducts } from "@/lib/products";
-import { toRailGarments } from "@/lib/rail";
 
 type SearchParams = Promise<{ q?: string; category?: string }>;
 
@@ -14,13 +13,7 @@ export const metadata = {
     "Browse handmade ceramics, textiles, pantry staples, jewellery and small-batch goods from independent makers.",
 };
 
-function buildHref({
-  q,
-  category,
-}: {
-  q?: string;
-  category?: string;
-}) {
+function buildHref({ q, category }: { q?: string; category?: string }) {
   const params = new URLSearchParams();
   if (q) params.set("q", q);
   if (category) params.set("category", category);
@@ -35,7 +28,7 @@ export default async function ProductsPage({
 }) {
   const { q, category } = await searchParams;
   const [products, categories] = await Promise.all([
-    listProducts({ q, category, limit: 48 }),
+    listProducts({ q, category, limit: 36 }),
     listCategoriesWithCounts(),
   ]);
 
@@ -54,7 +47,9 @@ export default async function ProductsPage({
       <section className="shell py-10 lg:py-14">
         <div className="flex flex-col gap-5 rounded-2xl border border-line bg-paper p-4 sm:p-5 lg:flex-row lg:items-center lg:justify-between">
           <form action="/products" className="relative w-full lg:max-w-sm">
-            {category && <input type="hidden" name="category" value={category} />}
+            {category && (
+              <input type="hidden" name="category" value={category} />
+            )}
             <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted" />
             <input
               name="q"
@@ -88,7 +83,9 @@ export default async function ProductsPage({
                 }`}
               >
                 {item}
-                <span className="ml-1.5 opacity-60">{counts.get(item) ?? 0}</span>
+                <span className="ml-1.5 opacity-60">
+                  {counts.get(item) ?? 0}
+                </span>
               </Link>
             ))}
           </div>
@@ -109,22 +106,16 @@ export default async function ProductsPage({
             </Link>
           )}
         </div>
-
       </section>
 
       {products.length > 0 ? (
-        <ClothingRailHero
-          items={toRailGarments(products)}
-          eyebrow="On the rail"
-          title={`${products.length} ${products.length === 1 ? "piece" : "pieces"}, chosen slowly.`}
-          description="Drag the rail to browse the whole shelf. Tap any piece to look closer, then open its page to add it to your basket."
-          caption={category ?? q ? "Filtered selection" : "Every maker, every piece"}
-          ctaLabel="Clear filters"
-          ctaHref="/products"
-          hanger="none"
-          autoplay={false}
-          className="border-t border-line"
-        />
+        <section className="shell pb-16 lg:pb-24">
+          <div className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+            {products.map((product, index) => (
+              <ProductCard key={product.id} product={product} index={index} />
+            ))}
+          </div>
+        </section>
       ) : (
         <section className="shell pb-16 lg:pb-24">
           <div className="rounded-2xl border border-dashed border-olive/25 bg-paper px-6 py-16 text-center">
