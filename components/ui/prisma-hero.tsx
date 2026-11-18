@@ -120,32 +120,33 @@ const PrismaHero = ({
     "A curated marketplace for ceramics, textiles, pantry staples and small-batch objects — every piece traceable to the hands that made it.",
   ctaLabel = "Explore the market",
   ctaHref = "/products",
-  imageSrc = "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=2400&q=85",
-  imageAlt = "Hand-thrown stoneware vessels on a potter's shelf",
+  imageSrc = "/hero-bg.jpg",
+  imageAlt = "A model in a camel trench coat beside a sculptural still life in a sunlit gallery",
 }: PrismaHeroProps) => {
   return (
     <section className="px-2 pb-2 sm:px-3">
-      <div className="relative h-[calc(100svh-4.75rem)] min-h-[38rem] w-full overflow-hidden rounded-[1.5rem] bg-olive-dark md:rounded-[2rem]">
+      <div className="relative h-[calc(100svh-7.75rem)] min-h-[36rem] w-full overflow-hidden rounded-[1.5rem] bg-olive-dark md:rounded-[2rem]">
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-[30%_center] sm:object-center"
         />
 
         {/* Noise overlay */}
         <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.55] mix-blend-overlay" />
 
         {/* Gradient overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-olive-dark/25 via-transparent to-olive-dark/85" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/55" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-[#1c2113]/95 via-[#1c2113]/45 to-transparent" />
 
         {/* Hero content */}
         <div className="absolute inset-x-0 bottom-0 px-4 pb-5 sm:px-6 sm:pb-7 md:px-10 md:pb-9">
           <div className="grid grid-cols-12 items-end gap-4">
             <div className="col-span-12 lg:col-span-8">
-              <h1 className="font-display text-[32vw] font-light leading-[0.8] tracking-[-0.06em] text-cream sm:text-[30vw] md:text-[26vw] lg:text-[24vw] xl:text-[22vw]">
+              <h1 className="font-display text-[32vw] font-light leading-[0.8] tracking-[-0.06em] text-cream [text-shadow:0_4px_32px_rgba(20,24,14,0.45)] sm:text-[30vw] md:text-[26vw] lg:text-[24vw] xl:text-[22vw]">
                 <WordsPullUp text={title} showAsterisk />
               </h1>
             </div>

@@ -6,10 +6,15 @@ import {
   Leaf,
   PackageCheck,
 } from "lucide-react";
-import { Hero } from "@/components/hero";
+import { PrismaHero } from "@/components/ui/prisma-hero";
 import { AboutSection } from "@/components/about-section";
-import { ProductCard } from "@/components/product-card";
-import { getFeaturedProducts, listCategoriesWithCounts } from "@/lib/products";
+import ClothingRailHero from "@/components/ui/product-rail-gallery";
+import {
+  getFeaturedProducts,
+  listCategoriesWithCounts,
+  listProducts,
+} from "@/lib/products";
+import { toRailGarments } from "@/lib/rail";
 import { CATEGORIES } from "@/lib/constants";
 
 const promises = [
@@ -31,10 +36,20 @@ const promises = [
 ];
 
 export default async function Home() {
-  const [featured, categories] = await Promise.all([
-    getFeaturedProducts(4),
+  const [featured, latest, categories] = await Promise.all([
+    getFeaturedProducts(10),
+    listProducts({ limit: 10 }),
     listCategoriesWithCounts(),
   ]);
+
+  const seen = new Set<string>();
+  const editProducts = [...featured, ...latest]
+    .filter((product) => {
+      if (seen.has(product.id)) return false;
+      seen.add(product.id);
+      return true;
+    })
+    .slice(0, 10);
 
   const categoryCounts = new Map(
     categories.map((entry) => [entry.category, entry.count]),
@@ -42,7 +57,7 @@ export default async function Home() {
 
   return (
     <>
-      <Hero />
+      <PrismaHero />
 
       <section className="border-y border-line bg-paper/70">
         <div className="shell flex flex-wrap items-center gap-2.5 py-5">
@@ -70,33 +85,32 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="shell py-20 lg:py-24">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="eyebrow">The weekly edit</p>
-            <h2 className="mt-4 max-w-xl font-display text-4xl leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl">
-              Objects worth keeping.
-            </h2>
-          </div>
-          <Link href="/products" className="btn-outline shrink-0">
-            Shop all pieces
-            <ArrowRight className="size-4" />
-          </Link>
-        </div>
-
-        {featured.length > 0 ? (
-          <div className="mt-11 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {featured.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
-            ))}
-          </div>
-        ) : (
+      {editProducts.length > 0 ? (
+        <ClothingRailHero
+          items={toRailGarments(editProducts)}
+          eyebrow="The weekly edit"
+          title="Objects worth keeping."
+          description="A slowly changing rail of small-batch pieces from independent studios — ceramics, textiles, pantry staples and quiet objects made to be used every day."
+          caption="Curated this week"
+          ctaLabel="Shop all pieces"
+          ctaHref="/products"
+          hanger="none"
+          autoplay={editProducts.length > 3}
+          interval={4200}
+          className="border-y border-line"
+        />
+      ) : (
+        <section className="shell py-20 lg:py-24">
+          <p className="eyebrow">The weekly edit</p>
+          <h2 className="mt-4 max-w-xl font-display text-4xl leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl">
+            Objects worth keeping.
+          </h2>
           <p className="mt-11 rounded-2xl border border-line bg-paper p-8 text-sm text-muted">
             The shelves are being restocked. Check back soon, or browse the full
             market.
           </p>
-        )}
-      </section>
+        </section>
+      )}
 
       <AboutSection />
 

@@ -1,19 +1,3581 @@
 npm notice run marketplace-ecom@0.1.0 dev
 npm notice run next dev
-⚠ Port 3000 is in use by process 31036, using available port 3001 instead.
 ▲ Next.js 16.4.6 (Turbopack)
-- Local:         http://localhost:3001
-- Network:       http://192.168.1.84:3001
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.84:3000
 - Environments: .env.local
-✓ Ready in 573ms
-✓ Running next.config.ts took 56ms
-⨯ Another next dev server is already running.
+✓ Ready in 629ms
+✓ Running next.config.ts took 66ms
+- Experiments (use with caution):
+  ✓ agentFeedback
 
-- Local:        http://localhost:3000
-- PID:          31036
-- Dir:          C:\Users\LenOvo\Desktop\marketplace-ecom
-- Log:          .next\dev\logs\next-development.log
+ GET / 200 in 8.9s (next.js: 355ms, application-code: 8.5s)
+ GET / 200 in 244ms (next.js: 6ms, application-code: 239ms)
+ GET / 200 in 283ms (next.js: 3ms, application-code: 280ms)
+ GET / 200 in 321ms (next.js: 3ms, application-code: 318ms)
+ GET / 200 in 340ms (next.js: 4ms, application-code: 336ms)
+ GET / 200 in 288ms (next.js: 4ms, application-code: 284ms)
+ GET / 200 in 194ms (next.js: 1.5ms, application-code: 193ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
-You can access the existing server at http://localhost:3000,
-or run taskkill /PID 31036 /F to stop it and start a new one.
-[?25h
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" data-scroll-behavior="smooth" className="manrope_6f...">
+                          <body
+                            className="flex min-h-full flex-col bg-cream text-ink"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+ 
+ GET /products 200 in 132ms (next.js: 16ms, application-code: 116ms)
+ GET /products 200 in 94ms (next.js: 2ms, application-code: 92ms)
+ GET / 200 in 120ms (next.js: 3ms, application-code: 117ms)
+✓ Compiled in 110ms
+✓ Compiled in 123ms
+⨯ ReferenceError: ProductCard is not defined
+    at eval (app\page.tsx:95:16)
+    at Array.map (<anonymous>)
+    at Home (app\page.tsx:94:23)
+  93 |           <div className="mt-11 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+  94 |             {featured.map((product, index) => (
+> 95 |               <ProductCard key={product.id} product={product} index={index} />
+     |                ^
+  96 |             ))}
+  97 |           </div>
+  98 |         ) : ( {
+  digest: '3151282700'
+}
+⨯ ReferenceError: ProductCard is not defined
+    at eval (app\page.tsx:95:16)
+    at Array.map (<anonymous>)
+    at Home (app\page.tsx:94:23)
+  93 |           <div className="mt-11 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+  94 |             {featured.map((product, index) => (
+> 95 |               <ProductCard key={product.id} product={product} index={index} />
+     |                ^
+  96 |             ))}
+  97 |           </div>
+  98 |         ) : ( {
+  digest: '3151282700'
+}
+ GET / 200 in 1123ms (next.js: 18ms, application-code: 1105ms)
+ GET / 200 in 1109ms (next.js: 109ms, application-code: 1000ms)
+[browser] Uncaught ReferenceError: ProductCard is not defined
+    at eval (app\page.tsx:95:16)
+    at Array.map (<anonymous>:1:18)
+    at Home (app\page.tsx:94:23)
+  93 |           <div className="mt-11 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+  94 |             {featured.map((product, index) => (
+> 95 |               <ProductCard key={product.id} product={product} index={index} />
+     |                ^
+  96 |             ))}
+  97 |           </div>
+  98 |         ) : (
+[browser] Uncaught ReferenceError: ProductCard is not defined
+    at eval (app\page.tsx:95:16)
+    at Array.map (<anonymous>:1:18)
+    at Home (app\page.tsx:94:23)
+  93 |           <div className="mt-11 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+  94 |             {featured.map((product, index) => (
+> 95 |               <ProductCard key={product.id} product={product} index={index} />
+     |                ^
+  96 |             ))}
+  97 |           </div>
+  98 |         ) : (
+✓ Compiled in 73ms
+⨯ ReferenceError: ProductCard is not defined
+    at eval (app\page.tsx:105:16)
+    at Array.map (<anonymous>)
+    at Home (app\page.tsx:104:23)
+  103 |           <div className="mt-11 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+  104 |             {featured.map((product, index) => (
+> 105 |               <ProductCard key={product.id} product={product} index={index} />
+      |                ^
+  106 |             ))}
+  107 |           </div>
+  108 |         ) : ( {
+  digest: '3011123276'
+}
+ GET / 500 in 370ms (next.js: 3ms, application-code: 367ms)
+⨯ ReferenceError: ProductCard is not defined
+    at eval (app\page.tsx:105:16)
+    at Array.map (<anonymous>)
+    at Home (app\page.tsx:104:23)
+  103 |           <div className="mt-11 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+  104 |             {featured.map((product, index) => (
+> 105 |               <ProductCard key={product.id} product={product} index={index} />
+      |                ^
+  106 |             ))}
+  107 |           </div>
+  108 |         ) : ( {
+  digest: '3011123276'
+}
+[browser] Uncaught ReferenceError: ProductCard is not defined
+    at eval (app\page.tsx:105:16)
+    at Array.map (<anonymous>:1:18)
+    at Home (app\page.tsx:104:23)
+  103 |           <div className="mt-11 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+  104 |             {featured.map((product, index) => (
+> 105 |               <ProductCard key={product.id} product={product} index={index} />
+      |                ^
+  106 |             ))}
+  107 |           </div>
+  108 |         ) : (
+ GET / 500 in 682ms (next.js: 3ms, application-code: 679ms)
+[browser] Uncaught ReferenceError: ProductCard is not defined
+    at eval (app\page.tsx:105:16)
+    at Array.map (<anonymous>:1:18)
+    at Home (app\page.tsx:104:23)
+  103 |           <div className="mt-11 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+  104 |             {featured.map((product, index) => (
+> 105 |               <ProductCard key={product.id} product={product} index={index} />
+      |                ^
+  106 |             ))}
+  107 |           </div>
+  108 |         ) : (
+✓ Compiled in 394ms
+ GET / 200 in 628ms (next.js: 7ms, application-code: 622ms)
+ GET / 200 in 533ms (next.js: 1.9ms, application-code: 531ms)
+✓ Compiled in 118ms
+ GET / 200 in 330ms (next.js: 96ms, application-code: 234ms)
+ GET / 200 in 679ms (next.js: 6ms, application-code: 673ms)
+✓ Compiled in 96ms
+ GET / 200 in 331ms (next.js: 4ms, application-code: 327ms)
+ GET / 200 in 215ms (next.js: 8ms, application-code: 208ms)
+ GET / 200 in 214ms (next.js: 1.4ms, application-code: 212ms)
+✓ Compiled in 85ms
+[browser] React instrumentation encountered an error: 'Error: The children should not have changed if we pass in the same set.\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:114434)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109538)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:114367)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109538)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:114367)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109538)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:114367)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109538)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateVirtualInstanceRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:107953)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109741)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109448)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)\n' +
+  '    at updateFiberRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:113757)\n' +
+  '    at updateVirtualChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109538)\n' +
+  '    at updateChildrenRecursively (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:109894)' (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:79881)
+✓ Compiled in 70ms
+ GET /products 200 in 133ms (next.js: 14ms, application-code: 119ms)
+✓ Compiled in 50ms
+ GET / 200 in 99ms (next.js: 2ms, application-code: 96ms)
+ GET / 200 in 208ms (next.js: 1.2ms, application-code: 207ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" data-scroll-behavior="smooth" className="manrope_6f...">
+                          <body
+                            className="flex min-h-full flex-col bg-cream text-ink"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+ 
+✓ Compiled in 54ms
+✓ Compiled in 50ms
+[browser] Uncaught ReferenceError: useImageMask is not defined
+    at Detail (components/ui/product-rail-gallery.tsx:648:16)
+    at S.scheduleRefresh (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:79881)
+    at Set.forEach (<anonymous>)
+    at ClothingRailHero (components/ui/product-rail-gallery.tsx:858:25)
+    at Home (app\page.tsx:89:9)
+  646 |   const [rotation, setRotation] = React.useState(0);
+  647 |   const titleId = React.useId();
+> 648 |   const mask = useImageMask(open === null ? undefined : items[open]?.sideImage ?? items[open]?.image);
+      |                ^
+  649 |   const item = open === null ? null : items[open];
+  650 |
+  651 |   React.useLayoutEffect(() => {
+[browser] Uncaught ReferenceError: useImageMask is not defined
+    at Detail (components/ui/product-rail-gallery.tsx:648:16)
+    at Set.forEach (<anonymous>)
+    at ClothingRailHero (components/ui/product-rail-gallery.tsx:858:25)
+    at Home (app\page.tsx:89:9)
+  646 |   const [rotation, setRotation] = React.useState(0);
+  647 |   const titleId = React.useId();
+> 648 |   const mask = useImageMask(open === null ? undefined : items[open]?.sideImage ?? items[open]?.image);
+      |                ^
+  649 |   const item = open === null ? null : items[open];
+  650 |
+  651 |   React.useLayoutEffect(() => {
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 70ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[browser] Uncaught ReferenceError: useTurns is not defined
+    at ClothingRailHero (components/ui/product-rail-gallery.tsx:867:29)
+    at S.scheduleRefresh (chrome-extension://fmkadmapgofadopljbjfkapdkoienihi/build/installHook.js:1:79881)
+    at Set.forEach (<anonymous>)
+    at Home (app\page.tsx:89:9)
+  865 |   const [ref] = useInView<HTMLDivElement>();
+  866 |   const reduced = usePrefersReducedMotion();
+> 867 |   const [turns, turnsRef] = useTurns();
+      |                             ^
+  868 |   const [heroRef, heroInView] = useInView<HTMLDivElement>({ threshold: 0.1 });
+  869 |
+  870 |   React.useEffect(() => {
+[browser] Uncaught ReferenceError: useTurns is not defined
+    at ClothingRailHero (components/ui/product-rail-gallery.tsx:867:29)
+    at Set.forEach (<anonymous>)
+    at Home (app\page.tsx:89:9)
+  865 |   const [ref] = useInView<HTMLDivElement>();
+  866 |   const reduced = usePrefersReducedMotion();
+> 867 |   const [turns, turnsRef] = useTurns();
+      |                             ^
+  868 |   const [heroRef, heroInView] = useInView<HTMLDivElement>({ threshold: 0.1 });
+  869 |
+  870 |   React.useEffect(() => {
+⨯ ReferenceError: useTurns is not defined
+    at ClothingRailHero (components\ui\product-rail-gallery.tsx:867:29)
+  865 |   const [ref] = useInView<HTMLDivElement>();
+  866 |   const reduced = usePrefersReducedMotion();
+> 867 |   const [turns, turnsRef] = useTurns();
+      |                             ^
+  868 |   const [heroRef, heroInView] = useInView<HTMLDivElement>({ threshold: 0.1 });
+  869 |
+  870 |   React.useEffect(() => { {
+  digest: '3638563301'
+}
+⨯ ReferenceError: useTurns is not defined
+    at ClothingRailHero (components\ui\product-rail-gallery.tsx:867:29)
+  865 |   const [ref] = useInView<HTMLDivElement>();
+  866 |   const reduced = usePrefersReducedMotion();
+> 867 |   const [turns, turnsRef] = useTurns();
+      |                             ^
+  868 |   const [heroRef, heroInView] = useInView<HTMLDivElement>({ threshold: 0.1 });
+  869 |
+  870 |   React.useEffect(() => { {
+  digest: '3638563301'
+}
+ GET / 500 in 411ms (next.js: 1.7ms, application-code: 409ms)
+ GET / 500 in 535ms (next.js: 4ms, application-code: 532ms)
+[browser] Uncaught ReferenceError: useTurns is not defined
+    at ClothingRailHero (components/ui/product-rail-gallery.tsx:867:29)
+    at Home (app\page.tsx:89:9)
+  865 |   const [ref] = useInView<HTMLDivElement>();
+  866 |   const reduced = usePrefersReducedMotion();
+> 867 |   const [turns, turnsRef] = useTurns();
+      |                             ^
+  868 |   const [heroRef, heroInView] = useInView<HTMLDivElement>({ threshold: 0.1 });
+  869 |
+  870 |   React.useEffect(() => {
+[browser] Uncaught ReferenceError: useTurns is not defined
+    at ClothingRailHero (components/ui/product-rail-gallery.tsx:867:29)
+    at Home (app\page.tsx:89:9)
+  865 |   const [ref] = useInView<HTMLDivElement>();
+  866 |   const reduced = usePrefersReducedMotion();
+> 867 |   const [turns, turnsRef] = useTurns();
+      |                             ^
+  868 |   const [heroRef, heroInView] = useInView<HTMLDivElement>({ threshold: 0.1 });
+  869 |
+  870 |   React.useEffect(() => {
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:7
+Error: Expression expected
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |       ^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+[browser] ./components/ui/product-rail-gallery.tsx:836:8
+Error: Unterminated regexp literal
+  834 |           </div>
+  835 |         </div>
+> 836 |       </div>
+      |        ^^^^^
+  837 |
+  838 |       <Detail
+  839 |         open={open}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/ui/product-rail-gallery.tsx
+    ./app/page.tsx 
+✓ Compiled in 69ms
+⨯ ReferenceError: turnsRef is not defined
+    at eval (components\ui\product-rail-gallery.tsx:554:22)
+    at Array.map (<anonymous>)
+    at Rail (components\ui\product-rail-gallery.tsx:550:20)
+  552 |                 key={item.id}
+  553 |                 type="button"
+> 554 |                 ref={turnsRef(index)}
+      |                      ^
+  555 |                 onClick={() => setLive({ index, count })}
+  556 |                 aria-label={`Show ${item.name}`}
+  557 |                 aria-pressed={index === centerIndex} {
+  digest: '3263741734'
+}
+⨯ ReferenceError: turnsRef is not defined
+    at eval (components\ui\product-rail-gallery.tsx:554:22)
+    at Array.map (<anonymous>)
+    at Rail (components\ui\product-rail-gallery.tsx:550:20)
+  552 |                 key={item.id}
+  553 |                 type="button"
+> 554 |                 ref={turnsRef(index)}
+      |                      ^
+  555 |                 onClick={() => setLive({ index, count })}
+  556 |                 aria-label={`Show ${item.name}`}
+  557 |                 aria-pressed={index === centerIndex} {
+  digest: '3263741734'
+}
+ GET / 500 in 414ms (next.js: 6ms, application-code: 408ms)
+ GET / 500 in 326ms (next.js: 1.9ms, application-code: 324ms)
+[browser] Uncaught ReferenceError: turnsRef is not defined
+    at <unknown> (components/ui/product-rail-gallery.tsx:554:22)
+    at Array.map (<anonymous>)
+    at Rail (components/ui/product-rail-gallery.tsx:550:20)
+    at ClothingRailHero (components/ui/product-rail-gallery.tsx:804:11)
+    at Home (app\page.tsx:89:9)
+  552 |                 key={item.id}
+  553 |                 type="button"
+> 554 |                 ref={turnsRef(index)}
+      |                      ^
+  555 |                 onClick={() => setLive({ index, count })}
+  556 |                 aria-label={`Show ${item.name}`}
+  557 |                 aria-pressed={index === centerIndex}
+[browser] Uncaught ReferenceError: turnsRef is not defined
+    at <unknown> (components/ui/product-rail-gallery.tsx:554:22)
+    at Array.map (<anonymous>)
+    at Rail (components/ui/product-rail-gallery.tsx:550:20)
+    at ClothingRailHero (components/ui/product-rail-gallery.tsx:804:11)
+    at Home (app\page.tsx:89:9)
+  552 |                 key={item.id}
+  553 |                 type="button"
+> 554 |                 ref={turnsRef(index)}
+      |                      ^
+  555 |                 onClick={() => setLive({ index, count })}
+  556 |                 aria-label={`Show ${item.name}`}
+  557 |                 aria-pressed={index === centerIndex}
+ GET / 200 in 261ms (next.js: 3ms, application-code: 258ms)
+ GET / 200 in 215ms (next.js: 2ms, application-code: 213ms)
+✓ Compiled in 90ms
+✓ Compiled in 71ms
+ GET / 200 in 159ms (next.js: 1.5ms, application-code: 158ms)
+✓ Compiled in 52ms
+ GET / 200 in 212ms (next.js: 3ms, application-code: 209ms)
+ GET / 200 in 244ms (next.js: 1.2ms, application-code: 243ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" data-scroll-behavior="smooth" className="manrope_6f...">
+                          <body
+                            className="flex min-h-full flex-col bg-cream text-ink"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+ 
+✓ Compiled in 52ms
+✓ Compiled in 52ms
+✓ Compiled in 52ms
+✓ Compiled in 65ms
+✓ Compiled in 74ms
+✓ Compiled in 33ms
+✓ Compiled in 51ms
+ GET / 200 in 271ms (next.js: 3ms, application-code: 269ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" data-scroll-behavior="smooth" className="manrope_6f...">
+                          <body
+                            className="flex min-h-full flex-col bg-cream text-ink"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+ 
+ GET / 200 in 203ms (next.js: 1.7ms, application-code: 202ms)
+ GET /products 200 in 102ms (next.js: 2ms, application-code: 100ms)
+ GET /products 200 in 97ms (next.js: 1.4ms, application-code: 95ms)
+✓ Compiled in 57ms
+ GET / 200 in 147ms (next.js: 4ms, application-code: 143ms)
+^CTerminer le programme de commandes (O/N)�? ^CTerminer le programme de commandes (O/N)�? 

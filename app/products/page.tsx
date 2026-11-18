@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { PageIntro } from "@/components/page-intro";
-import { ProductCard } from "@/components/product-card";
+import ClothingRailHero from "@/components/ui/product-rail-gallery";
 import { CATEGORIES } from "@/lib/constants";
 import { listCategoriesWithCounts, listProducts } from "@/lib/products";
+import { toRailGarments } from "@/lib/rail";
 
 type SearchParams = Promise<{ q?: string; category?: string }>;
 
@@ -109,14 +110,24 @@ export default async function ProductsPage({
           )}
         </div>
 
-        {products.length > 0 ? (
-          <div className="mt-7 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
-            ))}
-          </div>
-        ) : (
-          <div className="mt-8 rounded-2xl border border-dashed border-olive/25 bg-paper px-6 py-16 text-center">
+      </section>
+
+      {products.length > 0 ? (
+        <ClothingRailHero
+          items={toRailGarments(products)}
+          eyebrow="On the rail"
+          title={`${products.length} ${products.length === 1 ? "piece" : "pieces"}, chosen slowly.`}
+          description="Drag the rail to browse the whole shelf. Tap any piece to look closer, then open its page to add it to your basket."
+          caption={category ?? q ? "Filtered selection" : "Every maker, every piece"}
+          ctaLabel="Clear filters"
+          ctaHref="/products"
+          hanger="none"
+          autoplay={false}
+          className="border-t border-line"
+        />
+      ) : (
+        <section className="shell pb-16 lg:pb-24">
+          <div className="rounded-2xl border border-dashed border-olive/25 bg-paper px-6 py-16 text-center">
             <p className="font-display text-2xl text-ink">
               Nothing on this shelf yet.
             </p>
@@ -133,8 +144,8 @@ export default async function ProductsPage({
               </Link>
             </div>
           </div>
-        )}
-      </section>
+        </section>
+      )}
     </>
   );
 }
