@@ -1,116 +1,98 @@
-import Link from "next/link";
-import { AtSign, Mail, MapPin } from "lucide-react";
-import { Logo } from "@/components/logo";
-import { NewsletterForm } from "@/components/newsletter-form";
-import { CATEGORIES, SITE } from "@/lib/constants";
+"use client";
 
-const columns = [
+import PushpinTearFooter, {
+  type FooterColumn,
+  type IconLink,
+} from "@/components/ui/pushpin-tear-footer";
+import { SITE } from "@/lib/constants";
+
+function OleaMark() {
+  return (
+    <svg
+      viewBox="0 0 44 28"
+      className="tpf-mark"
+      aria-hidden="true"
+      fill="none"
+    >
+      <circle cx="22" cy="14" r="12" stroke="currentColor" strokeWidth="2.2" />
+      <path
+        d="M22 21c0-5.6 3.2-9.2 8-10.4-.4 5.6-3.2 8.8-8 10.4Z"
+        fill="currentColor"
+      />
+      <path
+        d="M22 21c0-4-2.4-6.8-6.4-8 .56 4 2.56 6.8 6.4 8Z"
+        fill="#D8B26B"
+      />
+      <path
+        d="M22 22.5V11"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <circle cx="33" cy="5.5" r="1.6" fill="#D8B26B" className="tpf-mark-dot" />
+    </svg>
+  );
+}
+
+const socials: IconLink[] = [
+  { icon: "ig", label: "Instagram", href: "#" },
+  { icon: "x", label: "X", href: "#" },
+  { icon: "linkedin", label: "LinkedIn", href: "#" },
+  { icon: "github", label: "GitHub", href: "#" },
+];
+
+const columns: FooterColumn[] = [
   {
-    title: "Shop",
-    links: CATEGORIES.slice(0, 5).map((category) => ({
-      label: category,
-      href: `/products?category=${encodeURIComponent(category)}`,
-    })),
+    title: "shop",
+    links: [
+      { label: "All pieces", href: "/products" },
+      { label: "Ceramics", href: "/products?category=Ceramics" },
+      { label: "Textiles", href: "/products?category=Textiles" },
+      { label: "Pantry", href: "/products?category=Pantry" },
+    ],
+    cta: { label: "browse.", href: "/products" },
   },
   {
-    title: "House",
+    title: "house",
     links: [
       { label: "Our story", href: "/about" },
       { label: "Sell on Olea", href: "/register?role=seller" },
-      { label: "The market", href: "/products" },
       { label: "Your account", href: "/dashboard" },
     ],
+    cta: { label: "talk.", href: `mailto:${SITE.email}` },
   },
-  {
-    title: "Care",
-    links: [
-      { label: "Shipping & returns", href: "/about#care" },
-      { label: "Makers' handbook", href: "/about#makers" },
-      { label: "Contact", href: `mailto:${SITE.email}` },
-    ],
-  },
+];
+
+const sideLinks: IconLink[] = [
+  { icon: "shield", label: "privacy", href: "/privacy" },
+  { icon: "doc", label: "terms", href: "/terms" },
 ];
 
 export function Footer() {
   return (
-    <footer className="mt-auto bg-olive-dark text-cream grain">
-      <div className="shell relative">
-        <div className="grid gap-10 border-b border-cream/10 py-14 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:py-16">
-          <div>
-            <p className="eyebrow !text-gold-light before:!bg-gold-light">
-              The Sunday dispatch
-            </p>
-            <h2 className="mt-4 max-w-lg font-display text-3xl leading-[1.1] tracking-tight sm:text-4xl">
-              New makers, quiet objects, and one good story each week.
-            </h2>
-          </div>
-          <div className="lg:justify-self-end">
-            <NewsletterForm />
-            <p className="mt-3 text-xs text-sand/60">
-              No noise. Unsubscribe whenever you like.
-            </p>
-          </div>
-        </div>
-
-        <div className="grid gap-12 py-14 lg:grid-cols-[1.2fr_2fr]">
-          <div>
-            <Logo tone="light" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-sand/80">
-              A marketplace for considered goods, made slowly by people whose
-              names you can learn.
-            </p>
-            <div className="mt-6 space-y-2.5 text-sm text-sand/75">
-              <p className="flex items-center gap-2.5">
-                <MapPin className="size-4 text-gold-light" />
-                {SITE.location}
-              </p>
-              <a
-                href={`mailto:${SITE.email}`}
-                className="flex items-center gap-2.5 transition-colors hover:text-cream"
-              >
-                <Mail className="size-4 text-gold-light" />
-                {SITE.email}
-              </a>
-              <p className="flex items-center gap-2.5">
-                <AtSign className="size-4 text-gold-light" />
-                @olea.market
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            {columns.map((column) => (
-              <div key={column.title}>
-                <h3 className="font-display text-lg text-cream">
-                  {column.title}
-                </h3>
-                <ul className="mt-4 space-y-2.5">
-                  {column.links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="text-sm text-sand/75 transition-colors hover:text-cream"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-4 border-t border-cream/10 py-6 text-[0.7rem] uppercase tracking-[0.16em] text-sand/55 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Olea Marketplace. Made with care.</p>
-          <p className="flex items-center gap-4">
-            <span>Visa</span>
-            <span>Mastercard</span>
-            <span>Apple Pay</span>
-            <span className="text-gold-light">Secure checkout</span>
-          </p>
-        </div>
-      </div>
-    </footer>
+    <PushpinTearFooter
+      brand="olea."
+      name="Olea Marketplace"
+      logoHref="/"
+      logo={<OleaMark />}
+      socials={socials}
+      email={SITE.email}
+      newsletter={{ label: "The Sunday dispatch", placeholder: "your@email" }}
+      status={{ label: "welcoming new makers", href: "/register?role=seller" }}
+      mark="EST. LISBON"
+      timeZone="Europe/Lisbon"
+      timeLabel="LIS"
+      columns={columns}
+      chat={{ label: "say hi", href: `mailto:${SITE.email}` }}
+      sideLinks={sideLinks}
+      copyright={`© ${new Date().getFullYear()} Olea Marketplace`}
+      credit="made with care"
+      handle={{ label: "@olea.market", href: "/about" }}
+      sheet="#4f5b2a"
+      paper="#fbf8f1"
+      sheetInk="#f5efe3"
+      paperInk="#22261a"
+      seed={12}
+    />
   );
 }
