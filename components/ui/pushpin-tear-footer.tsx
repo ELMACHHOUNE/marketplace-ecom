@@ -603,7 +603,7 @@ export default function PushpinTearFooter({
   const [toast, setToast] = React.useState("")
   const [grain, setGrain] = React.useState("")
 
-  const s = React.useRef({
+  const [s] = React.useState(() => ({
     W: 0,
     H: 0,
     tear: makeTear(seed),
@@ -620,15 +620,14 @@ export default function PushpinTearFooter({
     still: false,
     busy: false,
     seed,
-  }).current
-  s.still = still
+  }))
 
   const later = (fn: () => void, ms: number) => {
     timers.current.push(window.setTimeout(fn, ms))
   }
 
   // ---- drawing --------------------------------------------------------------
-  const frame = React.useCallback((now: number) => {
+  const frame = React.useCallback(function frameStep(now: number) {
     s.raf = 0
     const { W, H, tear } = s
     if (!W || !H) return
@@ -686,12 +685,17 @@ export default function PushpinTearFooter({
       draw(k, tear.flaps[k], open[k])
       draw(FLAPS + k, s.prev?.flaps[k], openOld[k])
     }
-    if (busy) s.raf = requestAnimationFrame(frame)
+    if (busy) s.raf = requestAnimationFrame(frameStep)
   }, [s])
 
   const kick = React.useCallback(() => {
     if (!s.raf && typeof requestAnimationFrame !== "undefined") s.raf = requestAnimationFrame(frame)
   }, [s, frame])
+
+  React.useEffect(() => {
+    s.still = still
+    kick()
+  }, [s, still, kick])
 
   // size
   React.useEffect(() => {
@@ -727,41 +731,47 @@ export default function PushpinTearFooter({
 
   // grain tile, once
   React.useEffect(() => {
-    const c = document.createElement("canvas")
-    c.width = c.height = 160
-    const g = c.getContext("2d")
-    if (!g) return
-    const img = g.createImageData(160, 160)
-    const r = rng(42)
-    for (let i = 0; i < img.data.length; i += 4) {
-      const v = r() < 0.5 ? 0 : 255
-      img.data[i] = img.data[i + 1] = img.data[i + 2] = v
-      img.data[i + 3] = Math.floor(r() * 46)
-    }
-    g.putImageData(img, 0, 0)
-    setGrain(c.toDataURL())
+    const id = requestAnimationFrame(() => {
+      const c = document.createElement("canvas")
+      c.width = c.height = 160
+      const g = c.getContext("2d")
+      if (!g) return
+      const img = g.createImageData(160, 160)
+      const r = rng(42)
+      for (let i = 0; i < img.data.length; i += 4) {
+        const v = r() < 0.5 ? 0 : 255
+        img.data[i] = img.data[i + 1] = img.data[i + 2] = v
+        img.data[i + 3] = Math.floor(r() * 46)
+      }
+      g.putImageData(img, 0, 0)
+      setGrain(c.toDataURL())
+    })
+    return () => cancelAnimationFrame(id)
   }, [])
 
   // the opening: chrome, pin, rip
   React.useEffect(() => {
     if (!visible || stage > 0) return
-    if (still) {
-      setStage(3)
-      s.mode = "rest"
-      kick()
-      return
-    }
-    setStage(1)
-    later(() => setStage(2), 640)
-    later(() => {
-      setHit(true)
-      setStage(3)
-      s.mode = "intro"
-      s.t0 = performance.now()
-      s.dur = 1550
-      kick()
-    }, 1140)
-    later(() => setHit(false), 1480)
+    const id = requestAnimationFrame(() => {
+      if (still) {
+        setStage(3)
+        s.mode = "rest"
+        kick()
+        return
+      }
+      setStage(1)
+      later(() => setStage(2), 640)
+      later(() => {
+        setHit(true)
+        setStage(3)
+        s.mode = "intro"
+        s.t0 = performance.now()
+        s.dur = 1550
+        kick()
+      }, 1140)
+      later(() => setHit(false), 1480)
+    })
+    return () => cancelAnimationFrame(id)
   }, [visible, stage, still, s, kick])
 
   React.useEffect(() => () => {
@@ -963,7 +973,7 @@ export default function PushpinTearFooter({
               onChange={(e) => setAddress(e.target.value)}
             />
             <span className="tpf-sent" aria-live="polite">
-              {sent ? <><Icon name="check" /> you're on the list</> : null}
+              {sent ? <><Icon name="check" /> you&apos;re on the list</> : null}
             </span>
             <button type="submit" className="tpf-knob" aria-label="Subscribe" disabled={sent}>
               <Icon name={sent ? "check" : "arrow"} />
