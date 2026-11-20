@@ -569,14 +569,14 @@ function Rail({
 
       <div className="absolute bottom-4 left-1/2 z-30 flex w-full max-w-[1400px] -translate-x-1/2 items-center justify-between px-4 sm:px-8">
         <div className="flex items-center gap-2">
-          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white/70">
+          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-ink/70">
             {String((size.carousel ? activeIndex : frontIndex) + 1).padStart(
               2,
               "0",
             )}
           </span>
           <span className="h-px w-8 bg-border" />
-          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white/45">
+          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-muted">
             {String(count).padStart(2, "0")}
           </span>
         </div>
@@ -866,21 +866,21 @@ export default function ClothingRailHero({
   return (
     <section
       ref={ref}
-      className={`relative w-full overflow-hidden bg-[#090d21] text-white ${className ?? ""}`}
+      className={`grain relative w-full overflow-hidden bg-paper text-ink ${className ?? ""}`}
       {...props}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.08),transparent_58%),linear-gradient(180deg,transparent_65%,rgba(0,0,0,0.2))]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(184,137,45,0.10),transparent_58%),linear-gradient(180deg,transparent_65%,rgba(34,38,26,0.05))]" />
 
       <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-8 px-4 pb-6 pt-16 sm:px-8 sm:pt-20 lg:pt-24">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-white/60">
+            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-olive">
               {eyebrow}
             </p>
-            <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[1.04] tracking-[-0.025em] text-white sm:text-5xl lg:text-6xl">
+            <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[1.04] tracking-[-0.025em] text-ink sm:text-5xl lg:text-6xl">
               {title}
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/65 sm:text-base">
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
               {description}
             </p>
           </div>
@@ -888,7 +888,7 @@ export default function ClothingRailHero({
           {action ?? (
             <Link
               href={ctaHref}
-              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/20 bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#090d21] transition-colors hover:bg-white/90"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#2b2410] transition-colors hover:bg-gold-light"
             >
               {ctaLabel}
               <svg
@@ -920,7 +920,7 @@ export default function ClothingRailHero({
             interval={Math.max(900, interval)}
           />
 
-          <div className="mt-4 flex items-center justify-between gap-4 text-[0.6rem] uppercase tracking-[0.18em] text-white/55">
+          <div className="mt-4 flex items-center justify-between gap-4 text-[0.6rem] uppercase tracking-[0.18em] text-muted">
             <span>{caption}</span>
             <span className="hidden sm:inline">
               Drag or tap a piece to look closer

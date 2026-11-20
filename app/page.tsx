@@ -1,14 +1,9 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  BadgeCheck,
-  Leaf,
-  PackageCheck,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { PrismaHero } from "@/components/ui/prisma-hero";
 import ClothingRailHero from "@/components/ui/product-rail-gallery";
 import { AboutSection } from "@/components/about-section";
+import { TornEdge } from "@/components/torn-edge";
 import {
   getFeaturedProducts,
   listCategoriesWithCounts,
@@ -16,24 +11,6 @@ import {
 } from "@/lib/products";
 import { CATEGORIES } from "@/lib/constants";
 import { toRailGarments } from "@/lib/rail";
-
-const promises = [
-  {
-    icon: BadgeCheck,
-    title: "Verified makers",
-    copy: "Every studio is interviewed and every listing is reviewed before it goes live.",
-  },
-  {
-    icon: Leaf,
-    title: "Materials, disclosed",
-    copy: "Natural fibres, recycled metals and food-safe finishes — written on every page.",
-  },
-  {
-    icon: PackageCheck,
-    title: "Packed with care",
-    copy: "Plastic-free packaging, carbon-balanced delivery and a 30-day return window.",
-  },
-];
 
 export default async function Home() {
   const [featured, latest, categories] = await Promise.all([
@@ -114,51 +91,24 @@ export default async function Home() {
 
       <AboutSection />
 
-      <section className="shell py-20 lg:py-24">
-        <div className="max-w-2xl">
-          <p className="eyebrow">Why Olea</p>
-          <h2 className="mt-4 font-display text-4xl leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl">
-            Fewer things. Better made.
-          </h2>
-        </div>
+      <section className="grain relative mt-20 bg-olive-dark text-cream">
+        <TornEdge className="absolute inset-x-0 top-0 z-10 h-8 w-full" />
+        <div
+          aria-hidden="true"
+          className="absolute -right-24 -top-24 size-80 rounded-full border border-gold/25"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-32 left-1/3 size-72 rounded-full bg-gold/10 blur-2xl"
+        />
 
-        <div className="mt-11 grid gap-5 md:grid-cols-3">
-          {promises.map((promise) => (
-            <div
-              key={promise.title}
-              className="rounded-2xl border border-line bg-paper p-7 transition-colors hover:border-olive/25"
-            >
-              <span className="grid size-11 place-items-center rounded-full bg-olive/8 text-olive">
-                <promise.icon className="size-5" />
-              </span>
-              <h3 className="mt-5 font-display text-xl text-ink">
-                {promise.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                {promise.copy}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="shell pb-20 lg:pb-24">
-        <div className="grain relative overflow-hidden rounded-[2rem] bg-olive px-6 py-12 text-cream sm:px-12 lg:px-16 lg:py-16">
-          <div
-            aria-hidden="true"
-            className="absolute -right-24 -top-24 size-80 rounded-full border border-gold/25"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-32 left-1/3 size-72 rounded-full bg-gold/10 blur-2xl"
-          />
-
-          <div className="relative grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-end">
+        <div className="shell relative py-24 lg:py-32">
+          <div className="grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-end">
             <div>
               <p className="eyebrow !text-gold-light before:!bg-gold-light">
                 For makers
               </p>
-              <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[1.03] tracking-[-0.02em] sm:text-5xl">
+              <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[1.03] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
                 Your work deserves a better shelf.
               </h2>
               <p className="mt-5 max-w-xl leading-relaxed text-sand/85">

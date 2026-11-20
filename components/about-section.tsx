@@ -22,7 +22,7 @@ const values = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="border-y border-line bg-paper">
+    <section id="about" className="grain relative bg-paper text-ink">
       <div className="shell grid items-center gap-14 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:py-28">
         <div className="relative mx-auto w-full max-w-md">
           <div
@@ -38,7 +38,7 @@ export function AboutSection() {
               className="object-cover"
             />
           </div>
-          <div className="absolute -bottom-6 -right-3 max-w-[15rem] rounded-2xl bg-olive p-5 text-cream shadow-[0_24px_48px_-24px_rgba(34,38,26,0.6)] sm:-right-8">
+          <div className="absolute -bottom-6 -right-3 max-w-[15rem] rounded-2xl bg-olive-dark p-5 text-cream shadow-[0_24px_48px_-24px_rgba(34,38,26,0.6)] sm:-right-8">
             <p className="font-display text-lg leading-snug">
               “We only list what we would keep in our own homes.”
             </p>
@@ -50,7 +50,7 @@ export function AboutSection() {
 
         <div>
           <p className="eyebrow">Our story</p>
-          <h2 className="mt-5 max-w-xl font-display text-4xl leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl">
+          <h2 className="mt-5 max-w-2xl font-display text-4xl leading-[1.02] tracking-[-0.03em] text-ink sm:text-5xl lg:text-6xl">
             A slower way to shop, built around people.
           </h2>
           <p className="mt-6 max-w-xl leading-relaxed text-muted">
@@ -71,7 +71,7 @@ export function AboutSection() {
                 key={value.number}
                 className="flex gap-4 border-t border-line pt-5"
               >
-                <span className="font-display text-sm text-gold">
+                <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-gold">
                   {value.number}
                 </span>
                 <div>
@@ -86,7 +86,7 @@ export function AboutSection() {
             ))}
           </div>
 
-          <Link href="/about" className="btn-outline mt-9">
+          <Link href="/about" className="btn-gold mt-9">
             Read the full story
             <ArrowUpRight className="size-4" />
           </Link>
