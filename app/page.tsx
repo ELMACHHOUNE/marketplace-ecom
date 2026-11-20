@@ -77,15 +77,17 @@ export default async function Home() {
           className="border-y border-line"
         />
       ) : (
-        <section className="shell py-20 lg:py-24">
-          <p className="eyebrow">The weekly edit</p>
-          <h2 className="mt-4 max-w-xl font-display text-4xl leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl">
-            Objects worth keeping.
-          </h2>
-          <p className="mt-11 rounded-2xl border border-line bg-paper p-8 text-sm text-muted">
-            The shelves are being restocked. Check back soon, or browse the full
-            market.
-          </p>
+        <section className="grain bg-paper py-20 lg:py-24">
+          <div className="shell">
+            <p className="eyebrow">The weekly edit</p>
+            <h2 className="mt-4 max-w-xl font-display text-4xl leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl">
+              Objects worth keeping.
+            </h2>
+            <p className="mt-11 rounded-2xl border border-line bg-cream/60 p-8 text-sm text-muted">
+              The shelves are being restocked. Check back soon, or browse the
+              full market.
+            </p>
+          </div>
         </section>
       )}
 

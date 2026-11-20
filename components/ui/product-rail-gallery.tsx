@@ -772,11 +772,11 @@ function Detail({
             </p>
             <h2
               id={titleId}
-              className="mt-3 font-display text-3xl leading-[1.08] tracking-[-0.02em] text-white sm:text-4xl"
+              className="mt-3 font-display text-3xl leading-[1.08] tracking-[-0.02em] text-ink sm:text-4xl"
             >
               {item.name}
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-white/65 sm:text-base">
+            <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
               {item.description}
             </p>
 
