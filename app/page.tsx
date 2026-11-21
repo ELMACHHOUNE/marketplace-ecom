@@ -94,15 +94,8 @@ export default async function Home() {
       <AboutSection />
 
       <section className="grain relative mt-20 bg-olive-dark text-cream">
-        <TornEdge className="absolute inset-x-0 top-0 z-10 h-8 w-full" />
-        <div
-          aria-hidden="true"
-          className="absolute -right-24 -top-24 size-80 rounded-full border border-gold/25"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute -bottom-32 left-1/3 size-72 rounded-full bg-gold/10 blur-2xl"
-        />
+     
+     
 
         <div className="shell relative py-24 lg:py-32">
           <div className="grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-end">
